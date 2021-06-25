@@ -14,9 +14,13 @@ public class SpringDemo01 {
         
         Student student123 = (Student) context.getBean("student123");
         System.out.println(student123.toString());
+
+        student123.print();
         
         Student student100 = (Student) context.getBean("student100");
         System.out.println(student100.toString());
+
+        student100.print();
     
         Klass class1 = context.getBean(Klass.class);
         System.out.println(class1);
@@ -36,7 +40,14 @@ public class SpringDemo01 {
         class1.dong();
     
         System.out.println("   context.getBeanDefinitionNames() ===>> "+ String.join(",", context.getBeanDefinitionNames()));
-        
 
+        Student s101 = (Student) context.getBean("s101");
+        if (s101 != null) {
+            System.out.println(s101);
+        }
+        Student s102 = (Student) context.getBean("s102");
+        if (s102 != null) {
+            System.out.println(s102);
+        }
     }
 }

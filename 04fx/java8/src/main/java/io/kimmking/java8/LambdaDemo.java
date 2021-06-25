@@ -17,17 +17,25 @@ public class LambdaDemo<T extends Serializable&Comparable&Collection> {
         };
         
         MathOperation op1 = (a, b) -> 1;
+
+
+        MathOperation op2 = new MathOperation<Integer>() {
+            @Override
+            public Integer operation(int a, int b) {
+                return a+b;
+            }
+        };
         
         // 类型声明
         MathOperation addition = (int a, int b) -> a + b;
     
                 // 不用类型声明
-        MathOperation subtraction = (a, b) -> a - b + 1.0;
+        MathOperation subtraction = (int a, int b) -> a - b ;
         
         // 大括号中的返回语句
         MathOperation multiplication = (int a, int b) -> { 
-            int c = 1000;
-            return a * b + c; 
+            //int c = 1000;
+            return a * b;// + c;
         };
         
         // 没有大括号及返回语句
@@ -41,22 +49,26 @@ public class LambdaDemo<T extends Serializable&Comparable&Collection> {
         //System.out.println("10 ^ 5 = " + demo.operate(10, 5, (a, b) -> new Double(Math.pow(a,b)).intValue()));
     
         System.out.println("10 ^ 5 = " + demo.operate(10, 5, (a, b) -> Math.pow(a,b)));
-        
+
+        Runnable task = () -> System.out.println(1111);
+
         // 不用括号
         GreetingService greetService1 = message ->
                 System.out.println("Hello " + message);
         
         // 用括号
-        GreetingService greetService2 = (message) ->
-                System.out.println("Hello " + message);
-    
+        GreetingService greetService2 = (message) -> {
+            System.out.println(message);
+        };
+
         GreetingService greetService3 = System.out::println;
-    
+
         Arrays.asList(1,2,3).forEach( x -> System.out.println(x+3));
         Arrays.asList(1,2,3).forEach( LambdaDemo::println );
         
         greetService1.sayMessage("kimmking");
         greetService2.sayMessage("Java");
+        greetService3.sayMessage("CuiCuilaoshi");
     }
     
     private static void println(int x) {
